@@ -1,0 +1,61 @@
+{
+  "name": "random-password-generator",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/base": "^5.0.0-beta.40",
+    "@mui/icons-material": "^5.15.16",
+    "@mui/material": "^5.15.16",
+    "@mui/system": "^5.15.15",
+    "@nextui-org/react": "^2.3.6",
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "framer-motion": "^11.1.7",
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.2",
+    "react-custom-social-icons": "^1.0.9",
+    "react-dom": "^18.3.1"
+  },
+  "description": "Introducing our Random Password Generator, a powerful and secure tool that creates unique and complex passwords for you. With just one click, you can generate a strong password that meets the highest security standards. Our generator uses a sophisticated algorithm to create passwords that are impossible to guess, ensuring that your online accounts remain safe and secure. Whether you're creating a new account or updating an existing one, our Random Password Generator is the perfect tool for the job. Try it out today and experience the peace of mind that comes with knowing your passwords are strong and secure.",
+  "keywords": [
+    "password",
+    "generator",
+    "random",
+    "secure",
+    "strong",
+    "unique",
+    "complex",
+    "password manager",
+    "password generator",
+    "password manager tool",
+    "online security",
+    "account protection",
+    "password protection",
+    "cybersecurity",
+    "data protection",
+    "password generator tool"
+  ],
+  "author": "Sarabjeet Singh",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.3",
+    "postcss": "^8.4.38",
+    "tailwind": "^4.0.0"
+  }
+}

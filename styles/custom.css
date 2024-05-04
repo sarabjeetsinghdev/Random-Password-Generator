@@ -1,0 +1,27 @@
+@import '../fonts/DMSerifDisplay/stylesheet.css';
+@import '../fonts/Charmonman\ &\ Inika/stylesheet.css';
+
+body {
+    font-family: 'Inika';
+}
+
+.MuiSlider-valueLabel {
+    background-color: #1976d2;
+    border-radius: 10px
+}
+
+label[data-selected=true] {
+    color: #ffffff;
+    background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
+
+.my_title {
+    font-family: 'DM Serif Display';
+    letter-spacing: 2px;
+}
+
+.my_name {
+    font-family: 'Charmonman';
+    font-weight: bold;
+    letter-spacing: 2px;
+}

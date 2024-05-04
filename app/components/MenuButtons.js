@@ -4,9 +4,9 @@ import React from 'react'
 
 const MenuButton = (props) => {
   const [textColor, settextColor] = React.useState(false)
-  const customFunc = React.useCallback(() => {
+  const customFunc = () => {
     return props.onClickFunc()
-  }, [])
+  }
   return (
     <Switch
       classNames={{
@@ -74,5 +74,7 @@ const MenuButtons = React.forwardRef((props, ref) => {
     </>
   )
 })
+
+MenuButtons.displayName = "MenuButtons"
 
 export default MenuButtons

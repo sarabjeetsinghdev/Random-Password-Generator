@@ -11,11 +11,11 @@ const SocialButtons = () => {
   const [load, setload] = React.useState(false)
   const [iconsArrNames, seticonsArrNames] = React.useState(new Array())
   const [iconsArrLinks, seticonsArrLinks] = React.useState(new Array())
-  const handleSocial = React.useCallback(() => {
+  const handleSocial = () => {
     onOpen()
-  })
+  }
   React.useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_CREDITS_API).then((response) => {
+    axios.get('https://credits-api.vercel.app/').then((response) => {
       if (response.data.names.length > 0 && response.data.links.length > 0) {
         if (response.data.names && response.data.links) setload(true)
         seticonsArrNames([...response.data.names])

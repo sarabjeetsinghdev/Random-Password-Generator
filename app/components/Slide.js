@@ -18,4 +18,6 @@ const Slide = React.forwardRef((props, ref) => {
     )
 })
 
+Slide.displayName = "Slide"
+
 export default Slide

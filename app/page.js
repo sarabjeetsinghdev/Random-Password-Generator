@@ -12,15 +12,15 @@ import Inputt from './components/Input'
 import Slide from './components/Slide'
 import React from 'react'
 
-const alertTimeout = 1500
+const AlertTimeout = 1500
 
-const Alert = (props) => {
+const Alertt = (props) => {
     const [show, setshow] = React.useState(false)
     React.useEffect(() => {
         setshow(true)
         setTimeout(() => {
             setshow(false)
-        }, alertTimeout)
+        }, AlertTimeout)
     }, [props.initializerVariable])
     return (<>
         <div className='fixed top-0 start-0 vh-100 vw-100' style={{ zIndex: '99', backgroundColor: 'rgba(0,0,0,0.8)' }}>
@@ -34,7 +34,7 @@ const Alert = (props) => {
             <AnimatePresence>
                 {show &&
                     <motion.div className={`text-center absolute z-50 rounded-3 overflow-hidden ${props.bgColor}`} initial={{ top: '-40px' }} animate={{ top: '30px' }} exit={{ top: '-40px', transition: { delay: 0.4, duration: 0.1, ease: 'linear' } }} transition={{ duration: 0.1, ease: 'linear' }}>
-                        <motion.div style={{ height: '4px', backgroundColor: 'white' }} initial={{ width: '100%' }} animate={{ width: '0%' }} transition={{ duration: alertTimeout / 1000 }}>&nbsp;</motion.div>
+                        <motion.div style={{ height: '4px', backgroundColor: 'white' }} initial={{ width: '100%' }} animate={{ width: '0%' }} transition={{ duration: AlertTimeout / 1000 }}>&nbsp;</motion.div>
                         <motion.div className='text-center p-3 fw-bold fs-6' style={{ wordSpacing: '3px', letterSpacing: '2px' }}>
                             {props.message}
                         </motion.div>
@@ -46,23 +46,24 @@ const Alert = (props) => {
     )
 }
 
-const page = () => {
-    const [result, setResult] = React.useState('')
+const Main = () => {
+    const emptyBoxWarning = "No options selected"
+    const typePassword = "Your password here..."
+    const [result, setResult] = React.useState(typePassword)
     const slideRef = React.useRef(null)
     const menuButtonRef = React.useRef(null)
-    const emptyBoxWarning = "No options selected"
-    const [alert, setalert] = React.useState(null)
+    const [Alert, setAlert] = React.useState(null)
     const handleClick = () => {
-        setalert(null)
+        setAlert(null)
         const sliderValue = slideRef.current.getValue
         const MenuButtonObj = menuButtonRef.current.returnState
         const { cap, small, num, splchars } = MenuButtonObj
         if ((!cap && !small && !num && !splchars)) {
             setResult(emptyBoxWarning)
-            setalert(<Alert initializerVariable={alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
+            setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
             setTimeout(() => {
-                setalert(null)
-            }, alertTimeout + 1000)
+                setAlert(null)
+            }, AlertTimeout + 1000)
             return
         }
         if (cap || small || num || splchars) {
@@ -72,47 +73,54 @@ const page = () => {
         }
     }
     const EndContent = () => {
-        const copyText = () => {
-            if (result !== emptyBoxWarning)
-                navigator.clipboard.writeText(result).then(() => {
-                    setalert(<Alert initializerVariable={alert} message={<><FontAwesomeIcon className='me-2' icon={faCheck} />Password copied successfully</>} bgColor='bg-success text-white' />)
-                    setTimeout(() => {
-                        setalert(null)
-                    }, alertTimeout + 1000)
-                })
-            else {
-                setalert(<Alert initializerVariable={alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
-                setTimeout(() => {
-                    setalert(null)
-                }, alertTimeout + 1000)
-            }
+    const copyText = () => {
+        if (result === emptyBoxWarning || result === typePassword) {
+            setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
+            setTimeout(() => {
+                setAlert(null)
+            }, AlertTimeout + 1000)
+            return
         }
-        return <MailIcon onClick={copyText} />
+        if (result !== emptyBoxWarning)
+            navigator.clipboard.writeText(result).then(() => {
+                setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faCheck} />Password copied successfully</>} bgColor='bg-success text-white' />)
+                setTimeout(() => {
+                    setAlert(null)
+                }, AlertTimeout + 1000)
+            })
+        else {
+            setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
+            setTimeout(() => {
+                setAlert(null)
+            }, AlertTimeout + 1000)
+        }
     }
-    return (
-        <>
-            {alert}
-            <div className='w-dvw h-dvh bg-zinc-400 absolute z-0'></div>
-            <Container className='relative z-10 pt-4'>
-                <Row>
-                    <Col className='offset-lg-3' lg={6}>
-                        <div className='rounded-4 text-center'>
-                            <div className='my_title' style={{ fontSize: '2.75rem' }}>RANDOM PASSWORD GENERATOR</div>
-                            <div className='my-3 my_name'>Sarabjeet Singh</div>
-                            <Inputt className='mb-3' value={result} endContent={<EndContent />} />
-                            <Slide ref={slideRef} />
-                            <MenuButtons ref={menuButtonRef} />
-                            <div className='pt-4'>
-                                <Button color='success' size='lg' className='me-4 text-white' onClick={handleClick} style={{ letterSpacing: '3px' }}>GENERATE</Button>
-                                <Button color='danger' size='lg' onClick={() => setResult('')} style={{ letterSpacing: '3px' }}>RESET</Button>
-                            </div>
+    return <MailIcon onClick={copyText} />
+}
+return (
+    <>
+        {Alert}
+        <div className='w-dvw h-dvh bg-zinc-400 absolute z-0'></div>
+        <Container className='relative z-10 pt-4'>
+            <Row>
+                <Col className='offset-lg-3' lg={6}>
+                    <div className='rounded-4 text-center'>
+                        <div className='my_title' style={{ fontSize: '2.75rem' }}>RANDOM PASSWORD GENERATOR</div>
+                        <div className='my-3 my_name'>Sarabjeet Singh</div>
+                        <Inputt className='mb-3' value={result} endContent={<EndContent />} />
+                        <Slide ref={slideRef} />
+                        <MenuButtons ref={menuButtonRef} />
+                        <div className='pt-4'>
+                            <Button color='success' size='lg' className='me-4 text-white' onClick={handleClick} style={{ letterSpacing: '3px' }}>GENERATE</Button>
+                            <Button color='danger' size='lg' onClick={() => setResult('')} style={{ letterSpacing: '3px' }}>RESET</Button>
                         </div>
-                    </Col>
-                </Row>
-            </Container>
-            <SocialButtons />
-        </>
-    )
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+        <SocialButtons />
+    </>
+)
 }
 
-export default page
+export default Main

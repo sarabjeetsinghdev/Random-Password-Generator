@@ -3,7 +3,9 @@ import React from 'react'
 
 const Inputt = (props) => {
     return (
-        <Input className='mb-4' value={props.value || ''} placeholder='Your password here...' disabled={true} size='lg' endContent={props.endContent} />
+        <div className='px-2'>
+            <Input className='mb-4' value={props.value || ''} placeholder='Your password here...' disabled={true} size='lg' endContent={props.endContent} />
+        </div>
     )
 }
 

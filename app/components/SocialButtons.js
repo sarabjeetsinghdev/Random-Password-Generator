@@ -1,12 +1,12 @@
 'use client'
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@nextui-org/react'
+import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure, Button } from '@nextui-org/react'
 import { faSquareShareNodes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SocialIcon } from 'react-custom-social-icons'
 import React from 'react'
 import axios from 'axios'
 
-const SocialButtons = () => {
+const SocialButtons = ({ children }) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
   const [load, setload] = React.useState(false)
   const [iconsArrNames, seticonsArrNames] = React.useState(new Array())
@@ -24,7 +24,7 @@ const SocialButtons = () => {
     })
   }, [])
   return (<>
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose}>
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose} placement='center'>
       <ModalContent>
         <ModalHeader>
           Connect with me
@@ -36,9 +36,13 @@ const SocialButtons = () => {
         </ModalBody>
       </ModalContent>
     </Modal>
-    {load && <div className='fixed right-5 bottom-5'>
-      <FontAwesomeIcon icon={faSquareShareNodes} className='display-6 bg-white rounded-circle cursor-pointer z-40 relative p-3' size='sm' onClick={handleSocial} />
-    </div>}
+    {load && <div className='flex flex-row justify-center'>
+      <Button className='' onClick={handleSocial}>
+        <FontAwesomeIcon icon={faSquareShareNodes} className='fs-5 rounded-circle cursor-pointer z-40 relative' size='sm'></FontAwesomeIcon>
+        &nbsp;&nbsp;
+        <div className='cursor-pointer'>{children}</div>
+      </Button>
+      </div>}
   </>
   )
 }

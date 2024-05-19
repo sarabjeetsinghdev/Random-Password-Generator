@@ -73,54 +73,54 @@ const Main = () => {
         }
     }
     const EndContent = () => {
-    const copyText = () => {
-        if (result === emptyBoxWarning || result === typePassword) {
-            setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
-            setTimeout(() => {
-                setAlert(null)
-            }, AlertTimeout + 1000)
-            return
-        }
-        if (result !== emptyBoxWarning)
-            navigator.clipboard.writeText(result).then(() => {
-                setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faCheck} />Password copied successfully</>} bgColor='bg-success text-white' />)
+        const copyText = () => {
+            if (result === emptyBoxWarning || result === typePassword) {
+                setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
                 setTimeout(() => {
                     setAlert(null)
                 }, AlertTimeout + 1000)
-            })
-        else {
-            setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
-            setTimeout(() => {
-                setAlert(null)
-            }, AlertTimeout + 1000)
+                return
+            }
+            if (result !== emptyBoxWarning)
+                navigator.clipboard.writeText(result).then(() => {
+                    setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faCheck} />Password copied successfully</>} bgColor='bg-success text-white' />)
+                    setTimeout(() => {
+                        setAlert(null)
+                    }, AlertTimeout + 1000)
+                })
+            else {
+                setAlert(<Alertt initializerVariable={Alert} message={<><FontAwesomeIcon className='me-2' icon={faTriangleExclamation} />Please select atleast one option</>} bgColor='bg-warning' />)
+                setTimeout(() => {
+                    setAlert(null)
+                }, AlertTimeout + 1000)
+            }
         }
+        return <MailIcon onClick={copyText} />
     }
-    return <MailIcon onClick={copyText} />
-}
-return (
-    <>
-        {Alert}
-        <div className='w-dvw h-dvh bg-zinc-400 absolute z-0'></div>
-        <Container className='relative z-10 pt-4'>
-            <Row>
-                <Col className='offset-lg-3' lg={6}>
-                    <div className='rounded-4 text-center'>
-                        <div className='my_title' style={{ fontSize: '2.75rem' }}>RANDOM PASSWORD GENERATOR</div>
-                        <div className='my-3 my_name'>Sarabjeet Singh</div>
-                        <Inputt className='mb-3' value={result} endContent={<EndContent />} />
-                        <Slide ref={slideRef} />
-                        <MenuButtons ref={menuButtonRef} />
-                        <div className='pt-4'>
-                            <Button color='success' size='lg' className='me-4 text-white' onClick={handleClick} style={{ letterSpacing: '3px' }}>GENERATE</Button>
-                            <Button color='danger' size='lg' onClick={() => setResult('')} style={{ letterSpacing: '3px' }}>RESET</Button>
+    return (
+        <>
+            {Alert}
+            <Container className='relative z-10 pt-4 pb-4'>
+                <Row>
+                    <Col className='offset-lg-3' lg={6}>
+                        <div className='rounded-4 text-center'>
+                            <div className='my_title' style={{ fontSize: '2.75rem' }}>RANDOM PASSWORD GENERATOR</div>
+                            <SocialButtons><div className='my-3 inline'>CONNECT WITH ME</div></SocialButtons>
+                            <br />
+                            <div className='my_name mb-3'>Sarabjeet Singh</div>
+                            <Inputt className='mb-3' value={result} endContent={<EndContent />} />
+                            <Slide ref={slideRef} />
+                            <MenuButtons ref={menuButtonRef} />
+                            <div className='pt-4'>
+                                <Button color='success' size='lg' className='me-4 text-white' onClick={handleClick} style={{ letterSpacing: '3px' }}>GENERATE</Button>
+                                <Button color='danger' size='lg' onClick={() => setResult('')} style={{ letterSpacing: '3px' }}>RESET</Button>
+                            </div>
                         </div>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-        <SocialButtons />
-    </>
-)
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    )
 }
 
 export default Main

@@ -24,7 +24,8 @@ const SocialButtons = ({ children }) => {
     })
   }, [])
   return (<>
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose} placement='center'>
+  {isOpen && <div className='fixed vh-100 vw-100 bg-dark opacity-50 top-0 start-0 z-40'></div>}
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={onClose} placement='center' backdrop='transparent'>
       <ModalContent>
         <ModalHeader>
           Connect with me
